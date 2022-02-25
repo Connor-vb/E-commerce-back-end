@@ -20,12 +20,12 @@ router.get('/:id', (req, res) => {
   // find one category by its `id` value
 
   Category.findOne({
-    .then(dbPostData => {
-      if (!dbPostData) {
-        res.status(404).json({ message: 'No post found with this id' });
+    .then(dbCategoryData => {
+      if (!dbCategoryData) {
+        res.status(404).json({ message: 'No Category found with this id' });
         return;
       }
-      res.json(dbPostData);
+      res.json(dbCategoryData);
     })
     .catch(err => {
       console.log(err);
@@ -40,8 +40,7 @@ router.post('/', (req, res) => {
 
   Category.create({
     Category_text: req.body.Category_text,
-    user_id: req.body.user_id,
-    post_id: req.body.post_id
+    id: req.body.id
   })
     .then(dbCategoryData => res.json(dbCategoryData))
     .catch(err => {
