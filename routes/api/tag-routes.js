@@ -38,6 +38,15 @@ Tag.findOne({
 router.post('/', (req, res) => {
   // create a new tag
 
+Tag.create({
+    Tag_text: req.body.Tag_text,
+    id: req.body.id
+  })
+    .then(dbTagData => res.json(dbTagData))
+    .catch(err => {
+      console.log(err);
+      res.status(400).json(err);
+    });
 
 });
 
